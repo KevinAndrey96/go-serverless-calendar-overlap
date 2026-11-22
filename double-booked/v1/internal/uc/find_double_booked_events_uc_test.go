@@ -43,7 +43,7 @@ func TestFindDoubleBookedEventsUC_Handle(t *testing.T) {
 					},
 				},
 			},
-			want:    models.DoubleBookedEvents{{3, 2}},
+			want:    models.DoubleBookedEvents{{2, 3}},
 			wantErr: false,
 		},
 		{
@@ -70,7 +70,7 @@ func TestFindDoubleBookedEventsUC_Handle(t *testing.T) {
 					},
 				},
 			},
-			want:    models.DoubleBookedEvents{{3, 2}},
+			want:    models.DoubleBookedEvents{{2, 3}},
 			wantErr: false,
 		},
 		{
@@ -97,7 +97,7 @@ func TestFindDoubleBookedEventsUC_Handle(t *testing.T) {
 					},
 				},
 			},
-			want:    models.DoubleBookedEvents{{3, 2}},
+			want:    models.DoubleBookedEvents{{2, 3}},
 			wantErr: false,
 		},
 	}

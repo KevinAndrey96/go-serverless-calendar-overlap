@@ -38,8 +38,12 @@ func (uc *FindDoubleBookedEventsUC) Handle(events models.Events) (models.DoubleB
 				isDoubleBookedCheck, _ := inTimeSpan(event, eventToCheck)
 				if isDoubleBookedCheck {
 					mutex.Lock()
-					if !isAlreadyInList(event.ID, eventToCheck.ID, doubleBookedEvents) {
-						doubleBookedEvents = append(doubleBookedEvents, []int{event.ID, eventToCheck.ID})
+					firstID, secondID := event.ID, eventToCheck.ID
+					if firstID > secondID {
+						firstID, secondID = secondID, firstID
+					}
+					if !isAlreadyInList(firstID, secondID, doubleBookedEvents) {
+						doubleBookedEvents = append(doubleBookedEvents, []int{firstID, secondID})
 					}
 					mutex.Unlock()
 				}
