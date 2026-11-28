@@ -4,7 +4,7 @@
 <div align="center">
 
 [![CI](https://github.com/KevinAndrey96/go-serverless-calendar-overlap/actions/workflows/ci.yml/badge.svg)](https://github.com/KevinAndrey96/go-serverless-calendar-overlap/actions/workflows/ci.yml)
-![Go](https://img.shields.io/badge/Go-1.20+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Go](https://img.shields.io/badge/Go-1.19+-00ADD8?style=for-the-badge&logo=go&logoColor=white)
 ![AWS Lambda](https://img.shields.io/badge/AWS%20Lambda-Serverless-FF9900?style=for-the-badge&logo=aws-lambda&logoColor=white)
 ![Serverless Framework](https://img.shields.io/badge/Serverless%20Framework-v3-FD5750?style=for-the-badge&logo=serverless&logoColor=white)
 ![Clean Architecture](https://img.shields.io/badge/Architecture-Clean%20%2F%20Hexagonal-555555?style=for-the-badge)
@@ -34,10 +34,10 @@ In distributed calendar systems, hotel reservations, meeting schedulers, and doc
    - Dedicated use case (`ParseEventsToUTCUC`) validates incoming payloads and normalizes all localized timestamps into standardized UTC ISO-8601 timestamps before interval computation, ensuring timezone-agnostic comparison accuracy.
 
 3. **🏛️ Clean Architecture & Use-Case Layering:**
-   - `internal/models`: Domain models and custom structured errors (`EventError`).
-   - `internal/uc`: Isolated business logic (`ParseEventsToUTCUC`, `FindDoubleBookedEventsUC`).
-   - `internal/cx_handler.go`: AWS Lambda entrypoint handler.
-   - `internal/di`: Compile-time Dependency Injection container powered by Google's `wire` tool.
+   - `double-booked/v1/internal/models`: Domain models and custom structured errors (`EventError`).
+   - `double-booked/v1/internal/uc`: Isolated business logic (`ParseEventsToUTCUC`, `FindDoubleBookedEventsUC`).
+   - `double-booked/v1/internal/cx_handler.go`: AWS Lambda entrypoint handler.
+   - `double-booked/v1/internal/di`: Compile-time Dependency Injection container powered by Google's `wire` tool.
 
 4. **☁️ Serverless Cloud Deployment:**
    - Automated packaging and deployment to **AWS Lambda** via **Serverless Framework** (`serverless.yml`).
@@ -101,7 +101,7 @@ go test ./... -cover
 
 ```bash
 # Deploy to AWS (requires AWS credentials configured)
-make dev
+cd double-booked && make dev
 ```
 
 ---
